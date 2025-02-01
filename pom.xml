@@ -177,7 +177,7 @@
 		-->
 		<!-- log4jdbc-log4j2-jdbc4 -->
 
-		
+		<!-- 레이아웃그리기기-->
 		<dependency>
 			<groupId>org.sitemesh</groupId>
 			<artifactId>sitemesh</artifactId>
@@ -185,8 +185,38 @@
 		</dependency>
 
 
-		
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava map카멜처리-->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>33.4.0-jre</version>
+		</dependency>
 
+		<!-- json 통신-->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- ajax json -->
+        <!-- social에서 참조 하고 있어 임시 주석 처리 -->
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+		
 	</dependencies>
 
 	<build>

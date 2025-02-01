@@ -2,6 +2,8 @@ package com.webbible.soulinku;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 
 //@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
@@ -13,4 +15,5 @@ public class SoulinkuApplication{
 		SpringApplication.run(SoulinkuApplication.class, args);
 	}
 	
+
 }

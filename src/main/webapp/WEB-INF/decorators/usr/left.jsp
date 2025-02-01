@@ -33,6 +33,8 @@
               </a>
             </li>
             
+
+            <!--
             <li class="menu-item <c:if test="${menuId eq 'bibleSayRecord'}">active</c:if>">
               <a href="/bible/bibleSayRecord/list.do" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-brightness-half"></i>
@@ -67,7 +69,15 @@
                 <div data-i18n="Analytics">중보기도문</div>
               </a>
             </li>
-            
+            -->
+
+
+
+
+
+
+
+
             
           </ul>
         </aside>

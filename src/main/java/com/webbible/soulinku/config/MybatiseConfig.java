@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.webbible.soulinku.util.CamelHashMap;
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -43,12 +45,16 @@ public class MybatiseConfig {
         //sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/*.xml"));
 
         sqlSessionFactoryBean.setTypeAliasesPackage("com.webbible.soulinku.dto");
+        sqlSessionFactoryBean.addTypeAliases(CamelHashMap.class);
         
         // 패키지명 주의
         return sqlSessionFactoryBean.getObject();
     }
+
+    
+
     @Bean
-    public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory){
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
