@@ -47,6 +47,70 @@ source /etc/profile
 
 
 
+145.223.19.82
+서버 : AAssddffgg11@@
+서버 sql : soulinku/aassddffgg11$$
+서버 sql : soulinku/aassdd11$
+local sql : doochuli2/aassdd11$
+
+mysqldump -u root -p egov bible_book_af > /dump/dump_book_af_241026.sql
+mysqldump -u soulinku -p egov bible_book_af < /was/dump/dump_book_af_241026.sql
+
+ssl 인증서발급 기관
+https://y-dev.tistory.com/44
+sudo certbot certonly --standalone
+
+
+<SSLHostConfig>
+<Certificate certificateKeyFile="/etc/letsencrypt/live/soulinku.com/privkey.pem"
+        certificateFile="/etc/letsencrypt/live/soulinku.com/cert.pem"
+        certificateChainFile="/etc/letsencrypt/live/soulinku.com/fullchain.pem"
+        type="RSA" />
+</SSLHostConfig>
+
+[root@soulinku conf]# sudo certbot certonly --standalone
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Please enter the domain name(s) you would like on your certificate (comma and/or
+space separated) (Enter 'c' to cancel): soulinku.com
+Requesting a certificate for soulinku.com
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/soulinku.com-0001/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/soulinku.com-0001/privkey.pem
+This certificate expires on 2025-05-02.
+These files will be updated when the certificate renews.
+Certbot has set up a scheduled task to automatically renew this certificate in the background.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name tomcat -CAfile chain.pem -caname root
+/etc/letsencrypt/live/soulinku.com-0001/keystore.p12 / aassdd11$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

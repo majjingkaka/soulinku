@@ -111,6 +111,15 @@
 		});
 		</script>
 
+	<script type="text/javascript">
+		var host = location.host.toLowerCase();
+		var currentAddress = location.href;
+		
+		if (host == "soulinku.com" && host.indexOf("www")== -1) {
+			currentAddress = currentAddress.replace("//","//www.");
+			location.href = currentAddress;
+		}
+	</script>
 
 
 
