@@ -10,6 +10,39 @@ https://herojoon-dev.tistory.com/6
 
 
 
+[스프링부트 기동킬]
+nohup java -jar soulinku-0.0.1-SNAPSHOT.war &
+CURRENT_PID=$(pgrep -f soulinku-0.0.1-SNAPSHOT.war)
+echo "$CURRENT_PID"
+sudo kill 6499
+
+[자바설치]
+https://loginshin.tistory.com/84
+update-alternatives --config java
+dnf list java*
+dnf install java-17-openjdk.x86_64
+java --version
+
+[자바위치확인및 환경설정]
+https://chobopark.tistory.com/383
+which java
+readlink -f /usr/bin/java
+
+모든 사용자 적용(root계정) : 
+/etc/profile 
+/etc/bashrc 
+
+해당 사용자만 적용(사용자계정) :
+~/.bashrc
+~/.bash_profile
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.432.b06-2.el9.x86_64/jre/
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASS_PATH=$JAVA_HOME/lib:$CLASS_PATH
+
+
+/usr/lib/jvm/java-17-openjdk-17.0.14.0.7-2.el9.x86_64/bin/java
+source /etc/profile
 
 
 
