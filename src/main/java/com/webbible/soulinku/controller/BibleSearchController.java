@@ -104,7 +104,6 @@ public class BibleSearchController {
 			mav.addObject("selectBibleSearchList", selectBibleSearchList);
 			
 		}catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		

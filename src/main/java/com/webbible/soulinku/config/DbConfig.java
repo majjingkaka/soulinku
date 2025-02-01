@@ -55,7 +55,6 @@ public class DbConfig implements TransactionManagementConfigurer{
         return new DataSourceTransactionManager(dataSource());
     }
 
-    @SuppressWarnings("null")
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return transactionManager();
