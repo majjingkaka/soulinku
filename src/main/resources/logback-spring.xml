@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <property name="CONSOLE_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %highlight([%-3level]) %logger{5} - %msg %n" />
+
+    <!-- Console appender 설정 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>${CONSOLE_PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="jdbc" level="OFF" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.sqlonly" level="OFF" additivity="false" >
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="jdbc.sqltiming" level="info" additivity="false" >
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="org.hibernate.SQL" level="OFF" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    
+    <!--
+    <logger name="com.webbible.todolist.controller" level="DEBUG" additivity="false" >
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="com.example.todolist.service" level="DEBUG" additivity="false" >
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="com.example.todolist.domain" level="DEBUG" additivity="false" >
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    -->
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
