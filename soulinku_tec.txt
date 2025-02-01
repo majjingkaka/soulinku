@@ -1,6 +1,7 @@
 ## 기술문서
 
-
+[깃연동]
+https://choco-life.tistory.com/44
 
 
 
