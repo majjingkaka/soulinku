@@ -12,7 +12,7 @@
 	</select>
 
 
-    <select id="selectBibleBookOrdrList" parameterType="hashmap" resultType="CamelHashMap">
+    <select id="selectBibleBookOrdrList" parameterType="bibleDto" resultType="CamelHashMap">
 	/* BibleSearchMapper.selectBibleBookOrdrList */
 		SELECT * 
 		FROM BIBLE_BOOK_ORDR 
@@ -27,7 +27,7 @@
 	</select>
 
 
-    <select id="selectBibleSearchList" parameterType="bibleDto" resultType="CamelHashMap">
+    <select id="selectBibleSearchList_back" parameterType="bibleDto" resultType="CamelHashMap">
 	/* BibleSearchMapper.selectBibleSearchList */
 		SELECT * 
 		FROM BIBLE_BOOK_ORDR A LEFT OUTER JOIN BIBLE_KORHRV B ON A.BOOK_SEQ = B.BOOK 
@@ -64,6 +64,49 @@
 		</if>
 		ORDER BY B.CHAPTER, B.VERSE
 	</select>
+
+
+	<select id="selectBibleSearchList" parameterType="bibleDto" resultType="CamelHashMap">
+	/* BibleSearchMapper.selectBibleSearchList */
+		select * from 
+		(
+		SELECT *, CAST(concat(chapter,lpad(verse,3,0)) AS UNSIGNED) as se_ordr
+		FROM BIBLE_BOOK_ORDR A LEFT OUTER JOIN BIBLE_KORHRV B ON A.BOOK_SEQ = B.BOOK
+		) a
+		WHERE 1=1
+		AND A.BOOK_AF = #{bookAf}
+		AND A.BOOK_SEQ = #{bookSeq}
+		<if test="btweenYn != null and btweenYn != ''">
+			<if test="btweenYn == 'Y'.toString()">
+				and a.se_ordr between concat(nvl(nullif(#{chapter},''),1),lpad(nvl(nullif(#{verse},''),1),3,0)) and concat(nvl(nullif(#{chapter2},''),200),lpad(nvl(nullif(#{verse2},''),200),3,0))
+			</if>
+			<if test="btweenYn == 'N'.toString()">
+				<if test="chapter != null and chapter != ''">
+					AND a.CHAPTER = #{chapter}
+				</if>
+				<if test="verse != null and verse != ''">
+					AND a.VERSE = #{verse}
+				</if>
+			</if>
+		</if>
+		<if test="searchKeyword != null and searchKeyword != ''">
+		AND a.CONTENT LIKE CONCAT ('%', #{searchKeyword},'%')
+		</if>
+		ORDER BY a.se_ordr
+	</select>
+
+	<select id="selectBibleSearchJangCt" parameterType="bibleDto" resultType="CamelHashMap">
+	/* BibleSearchMapper.selectBibleSearchJangCt */
+		SELECT BOOK, CHAPTER, COUNT(VERSE) AS VERSE_CT 
+		FROM BIBLE_KORHRV
+		WHERE 1=1
+		AND BOOK = #{bookSeq}
+		<if test="chapter != null and chapter != ''">
+		AND CHAPTER = #{chapter}
+		</if>
+		GROUP BY BOOK, CHAPTER
+	</select>
+
 
 
 

@@ -14,15 +14,22 @@ public class BibleSearchService {
     @Autowired
     BibleSearchMapper bibleSearchMapper;
 
-    public List<Map<String, Object>> selectBibleBookAfList(Object param){
-        return bibleSearchMapper.selectBibleBookAfList(param);
+    //Object param
+    public List<Map<String, Object>> selectBibleBookAfList(BibleDto bibleDto){
+        return bibleSearchMapper.selectBibleBookAfList(bibleDto);
     }
 
-    public List<Map<String, Object>> selectBibleBookOrdrList(Object param){
-        return bibleSearchMapper.selectBibleBookOrdrList(param);
+    public List<Map<String, Object>> selectBibleBookOrdrList(BibleDto bibleDto){
+        return bibleSearchMapper.selectBibleBookOrdrList(bibleDto);
     }
 
     public List<Map<String, Object>> selectBibleSearchList(BibleDto bibleDto){
         return bibleSearchMapper.selectBibleSearchList(bibleDto);
     }
+
+    public List<Map<String, Object>> selectBibleSearchJangCt(BibleDto bibleDto){
+        return bibleSearchMapper.selectBibleSearchJangCt(bibleDto);
+    }
+
+
 }

@@ -33,14 +33,23 @@ public class BibleSearchController {
 		, ModelMap model
 		) {
             log.info("BibleSearchController list call...");
+			BibleDto bibleDto = new BibleDto();
 
-            Map<String, Object> param = new HashMap<>();
-            List<Map<String, Object>> selectBibleBookAfList = bibleSearchService.selectBibleBookAfList(param);
+            //Map<String, Object> param = new HashMap<>();
+            List<Map<String, Object>> selectBibleBookAfList = bibleSearchService.selectBibleBookAfList(bibleDto);
             model.addAttribute("selectBibleBookAfList", selectBibleBookAfList);
             
-            param.put("bookAf", "A");
-            List<Map<String, Object>> selectBibleBookOrdrList = bibleSearchService.selectBibleBookOrdrList(param);
+            //param.put("bookAf", "A");
+			bibleDto.setBookAf("A");
+            List<Map<String, Object>> selectBibleBookOrdrList = bibleSearchService.selectBibleBookOrdrList(bibleDto);
             model.addAttribute("selectBibleBookOrdrList", selectBibleBookOrdrList);
+
+			
+			bibleDto.setBookSeq("1");
+            List<Map<String, Object>> selectBibleSearchJangCt = bibleSearchService.selectBibleSearchJangCt(bibleDto);
+            model.addAttribute("selectBibleSearchJangCt", selectBibleSearchJangCt);
+
+			
 
             return "bible/bibleSearch/list";
             
@@ -57,12 +66,15 @@ public class BibleSearchController {
 			) {
                 log.info("BibleSearchController bookOrdrListChange call...");
 		
-		Map<String, Object> param = new HashMap<>();
-		param.put("bookAf", bookAf);
+		//Map<String, Object> param = new HashMap<>();
+		//param.put("bookAf", bookAf);
+
+		BibleDto bibleDto = new BibleDto();
+		bibleDto.setBookAf(bookAf);
 		
 		//List<EgovMap> selectBibleBookOrdrList = commonSqlDao.selectList("BibleMainDAO.selectBibleBookOrdrList",param);
-        List<Map<String, Object>> selectBibleBookOrdrList = bibleSearchService.selectBibleBookOrdrList(param);
-		model.put("selectBibleBookOrdrList", selectBibleBookOrdrList);
+        List<Map<String, Object>> selectBibleBookOrdrList = bibleSearchService.selectBibleBookOrdrList(bibleDto);
+		//model.put("selectBibleBookOrdrList", selectBibleBookOrdrList);
 		
 		//log.debug(map.toString());
 		log.info(bookAf);
@@ -112,5 +124,55 @@ public class BibleSearchController {
 		return mav;
 		
 	}
+
+
+
+
+
+	@ResponseBody
+	@RequestMapping(value = "/bible/bookOrdrJangCtChange.do" )
+	public ModelAndView bookOrdrJangCtChange(
+			//@RequestBody HashMap<String, Object> map
+			HttpServletRequest request
+			, HttpServletResponse response
+			, ModelMap model
+			, @RequestParam(value = "bookSeq", defaultValue = "1") String bookSeq
+			, @RequestParam(value = "chapter", defaultValue = "") String chapter
+			) {
+                log.info("BibleSearchController bookOrdrListChange call...");
+		
+		//Map<String, Object> param = new HashMap<>();
+		//param.put("bookAf", bookAf);
+
+		BibleDto bibleDto = new BibleDto();
+		bibleDto.setBookSeq(bookSeq);
+		bibleDto.setChapter(chapter);
+
+		//List<EgovMap> selectBibleBookOrdrList = commonSqlDao.selectList("BibleMainDAO.selectBibleBookOrdrList",param);
+        List<Map<String, Object>> selectBibleSearchJangCt = bibleSearchService.selectBibleSearchJangCt(bibleDto);
+		//model.put("selectBibleBookOrdrList", selectBibleBookOrdrList);
+		
+		//log.debug(map.toString());
+		//log.info(bookAf);
+		
+		//model.put("result", "1111");
+		ModelAndView mav = new ModelAndView("jsonView");
+		mav.addObject("selectBibleSearchJangCt", selectBibleSearchJangCt);
+		//mav.addObject("paginationInfo", paginationInfo);
+		
+		return mav;
+	}
+
+
+	
+
+
+
+
+
+
+
+
+
 
 }

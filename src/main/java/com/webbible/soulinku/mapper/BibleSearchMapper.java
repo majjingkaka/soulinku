@@ -9,8 +9,10 @@ import com.webbible.soulinku.dto.BibleDto;
 
 @Mapper
 public interface BibleSearchMapper {
-    List<Map<String, Object>> selectBibleBookAfList(Object param);
-    List<Map<String, Object>> selectBibleBookOrdrList(Object param);
+    //Object param
+    List<Map<String, Object>> selectBibleBookAfList(BibleDto bibleDto);
+    List<Map<String, Object>> selectBibleBookOrdrList(BibleDto bibleDto);
     List<Map<String, Object>> selectBibleSearchList(BibleDto bibleDto);
+    List<Map<String, Object>> selectBibleSearchJangCt(BibleDto bibleDto);
     
 }
